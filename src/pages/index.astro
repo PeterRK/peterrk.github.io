@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { licenses } from '../data/licenses';
+---
+
+<BaseLayout
+  title="GNU GPL 中文译文"
+  description="GNU 通用公共许可协议第二版与第三版的非官方中文翻译存档。"
+>
+  <section class="document-index" aria-labelledby="document-index-title">
+    <div class="section-heading">
+      <h2 id="document-index-title">译文存档</h2>
+      <span>{String(licenses.length).padStart(2, '0')}</span>
+    </div>
+
+    <ol class="document-list">
+      {licenses.map((license, index) => (
+        <li>
+          <a class="document-card" href={license.path}>
+            <span class="document-number">{String(index + 1).padStart(2, '0')}</span>
+            <span class="document-summary">
+              <small>{license.version}</small>
+              <strong>{license.title}</strong>
+              <span>{license.description}</span>
+            </span>
+            <span class="document-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+</BaseLayout>

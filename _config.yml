@@ -1,7 +1,0 @@
-highlighter: rouge
-mardown: redcarpet
-excerpt_separator: '<!--detail-->'
-paginate: 5
-paginate_path: "p:num"
-plugins :
-  - jekyll-paginate

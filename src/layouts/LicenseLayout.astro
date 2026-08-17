@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  version: string;
+  source: string;
+  canonicalPath: string;
+}
+
+const { version, source, canonicalPath } = Astro.props;
+const body =
+  source
+    .match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1]
+    ?.replaceAll('http://www.gnu.org', 'https://www.gnu.org')
+    .replaceAll('http://fsf.org', 'https://fsf.org') ?? source;
+---
+
+<BaseLayout
+  title={`GNU 通用公共许可协议 ${version}`}
+  description={`GNU 通用公共许可协议${version}非官方中文翻译。`}
+  canonicalPath={canonicalPath}
+  wide
+>
+  <article class="license-page">
+    <a class="back-link" href="/">← 返回译文列表</a>
+    <div class="license-document" set:html={body} />
+  </article>
+</BaseLayout>
